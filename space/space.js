@@ -1,6 +1,6 @@
-function getuser() {
+function getname() {
     let httpRequest = new XMLHttpRequest();
-    httpRequest.open("GET", 'http://49.235.99.195:8090/user/11/menu', true);
+    httpRequest.open("GET", 'http://49.235.99.195:8090/user/TEST/menu', true);
     httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     httpRequest.send("");
     httpRequest.onreadystatechange = () => {
@@ -15,7 +15,23 @@ function getuser() {
                     document.getElementById('nickName').innerHTML = "无名者";
                 }
 
-                if (data.introduce != null) {
+            }
+        }
+    }
+
+}
+
+function getin() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://49.235.99.195:8090/user/TEST/menu', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("");
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            let data = JSON.parse(xhr.responseText);
+            {
+
+                if (data.introduce != undefined) {
                     let introduce = data.introduce;
                     document.getElementById('introduce').innerHTML = introduce;
                 }
@@ -28,7 +44,8 @@ function getuser() {
 
 }
 
-getuser();
+getname();
+getin();
 
 // 修改简介
 
